@@ -20,17 +20,13 @@ var clickCount = 0;
 
 var action=function()
 {
-    if (loaded == (10 * waitTime) && clickCount >= 2) {
+    if (loaded == (10 * waitTime) && clickCount == 1) {
         levelup();
         return false;
-    }
-    else if (loaded == (10 * waitTime)) {
-        alert("Download Complete")    
-    } else if(clickCount == 1) {
-        clickCount++;
-        alert("HEY! Stop that!");
-        progressBarInit();
-    } else if (clickCount == 2) {
+    } 
+    else if (loaded == (10 * waitTime) && gameOver == false && clickCount == 0) {
+        alert("Download Complete")  
+    } else if (clickCount == 1) {
         openTerminal();
         loaded = 0;
         progressBarInit();
@@ -52,7 +48,6 @@ function openTerminal(){
 
 function incrementCount() {
     clickCount++;
-    alert();
 }
 
 //*****************************************************//
@@ -77,14 +72,14 @@ function draw() {
     txt='';
     if(ns4){
     txt+='<table border=0 cellpadding=0 cellspacing=0><tr><td>hello world';
-    txt+='<ilayer name="PBouter" visibility="hide" height="'+barheight+'" width="'+barwidth+'" onmouseup="hidebar()" onclick="clickCount++; alert(clickCount)"><p>hello world</p>';
+    txt+='<ilayer name="PBouter" visibility="hide" height="'+barheight+'" width="'+barwidth+'" onmouseup="hidebar()" onclick="clickCount++;"><p>hello world</p>';
     txt+='<layer width="'+barwidth+'" height="'+barheight+'" bgcolor="'+bordercolor+'" top="0" left="0"><p>hello world</p></layer>';
     txt+='<layer width="'+(barwidth-2)+'" height="'+(barheight-2)+'" bgcolor="'+unloadedcolor+'" top="1" left="1"><p>hello world</p></layer>';
     txt+='<layer name="PBdone" width="'+(barwidth-2)+'" height="'+(barheight-2)+'" bgcolor="'+loadedcolor+'" top="1" left="1"><p>hello world</p></layer>';
     txt+='</ilayer>';
     txt+='</td></tr></table>';
     }else{
-    txt+='<div id="PBouter" onmouseup="hidebar()" onclick="clickCount++; alert(clickCount)" style="position:relative; visibility:hidden; background-color:'+bordercolor+'; width:'+barwidth+'px; height:'+barheight+'px;">';
+    txt+='<div id="PBouter" onmouseup="hidebar()" onclick="clickCount++;" style="position:relative; visibility:hidden; background-color:'+bordercolor+'; width:'+barwidth+'px; height:'+barheight+'px;">';
     txt+='<div style="position:absolute; top:1px; left:1px; width:'+(barwidth-2)+'px; height:'+(barheight-2)+'px; background-color:'+unloadedcolor+'; font-size:1px;"></div>';
     txt+='<div id="PBdone" style="position:absolute; top:1px; left:1px; width:0px; height:'+(barheight-2)+'px; background-color:'+loadedcolor+'; font-size:1px;"></div>';
     txt+='</div>';

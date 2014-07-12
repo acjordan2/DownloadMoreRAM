@@ -237,12 +237,34 @@ artLoadEvent.add(Menu_IE6Setup);
 var gameOver = false;
  
  function levelup(){
-    var challenge = new Array("ssh root@downloadmoreram.com", "cat /etc/passwd", "rm -rf /");
-    var output = new Array("Logged in as root", "/cat/etc/passwd output", "files deleted");
+    var challenge = new Array(
+        "ssh root@downloadmoreram.com", 
+        "cd /", 
+        "ls",
+        "cd /var/www/DownloadMoreRAM.com",
+        "ls",
+        "rm -rf ./*",
+        "wget www.reddit.com/hackervirus.tar.gz",
+        "tar cvzf hackervirus.tar.gz",
+        "make install hackervirus"
+    );
+    var output = new Array(
+        "Logged in as root", 
+        "", 
+        "bin boot dev etc home lib lib64 media mnt opt proc root run sbin selinux srv sys tmp usr var",
+        "cd /var/www/DownloadMoreRAM.com",
+        "index.html README.md style.css timerbar.js contact.html download.html",
+        "",
+        "Saving hackervirus.tar.gz\n\n100%[====================>]\n 8,459 --.-K/s in 0s\n2014-07-12 18:08:56 (223 MB/s) - `index.html.1' saved [8459/8459]",
+        "hackervirus",
+        '<iframe width="420" height="315" src="//www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>'
+
+        );
 
     if (level >= (challenge.length) && gameOver == false) {
         alert("Challenge Complete");
         document.getElementById("command").innerHTML = "You hacked " + Math.pow(2, (level+1)) + " RAMs today";
+        document.getElementById("terminal").innerHTML = '<iframe width="420" height="315" src="//www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>';
         gameOver = true;
     } else if (loaded == (10 * waitTime) && gameOver == false) {
         alert("Game Over");
@@ -251,13 +273,13 @@ var gameOver = false;
     } else if(gameOver == false) {
         level++;
         loaded = 0;
-        if (level >= 1) {
+        if (level >= 5) {
             waitTime = 10;
             loadedcolor = "yellow";
             barheight=30; 
             barwidth=400;
         }
-        if (level >= 2) {
+        if (level >= 8) {
             loadedcolor = "red";
             waitTime = 5;
             barheight=30; 
@@ -281,6 +303,7 @@ var gameOver = false;
                 return levelup();
                 break;
            } else {
+                //return levelup();
                 return false;
                 break;
            } 
